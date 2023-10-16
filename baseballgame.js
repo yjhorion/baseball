@@ -37,6 +37,14 @@ function baseball() {
     console.log('3자리 숫자를 입력해주세요')
     rl.on("line", (guess) => {
 
+        // 입력값의 format 검사
+        if (!Number(guess)) {
+            console.log('입력하신 값은 숫자가 아닙니다')
+        } else if (guess.length !== 3){
+            console.log('3자리의 숫자만 유효합니다')
+        } else if (guess[0] === guess[1] || guess[0] === guess[2] || guess[1] === guess[2]){
+            console.log('중복된 숫자입니다. 중복되지 않는 3자리 숫자를 입력해주세요')
+        } else {
         // input값의 strike과 ball 갯수 count
         for (let i = 0; i < guess.length; i++) {
             if (random_number[i] === guess[i]) {
@@ -57,6 +65,9 @@ function baseball() {
             console.log(`축하합니다! ${try_count}번만에 정답을 맞추셨습니다`)
             rl.close();
         }
+    }
+
+
     });
 }
 
